@@ -1,13 +1,19 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/dotenv-safe': ^8.1.2
   '@types/node': ^20.6.2
+  dotenv-safe: ^8.2.0
   nodemon: ^3.0.1
   rimraf: ^5.0.1
   ts-node: ^10.9.1
   typescript: ^5.2.2
 
+dependencies:
+  dotenv-safe: 8.2.0
+
 devDependencies:
+  '@types/dotenv-safe': 8.1.2
   '@types/node': 20.6.2
   nodemon: 3.0.1
   rimraf: 5.0.1
@@ -72,6 +78,12 @@ packages:
 
   /@tsconfig/node16/1.0.4:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
+    dev: true
+
+  /@types/dotenv-safe/8.1.2:
+    resolution: {integrity: sha512-R/B/wIMda6lRE2P1H0vwSoJsV78IOkhccE4vIvmKZQNXOIjiU0QyJsUXwSotBxOPZFZ/oOnjCa3+kK5kVJwGyw==}
+    dependencies:
+      dotenv: 8.6.0
     dev: true
 
   /@types/node/20.6.2:
@@ -215,6 +227,16 @@ packages:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
     engines: {node: '>=0.3.1'}
     dev: true
+
+  /dotenv-safe/8.2.0:
+    resolution: {integrity: sha512-uWwWWdUQkSs5a3mySDB22UtNwyEYi0JtEQu+vDzIqr9OjbDdC2Ip13PnSpi/fctqlYmzkxCeabiyCAOROuAIaA==}
+    dependencies:
+      dotenv: 8.6.0
+    dev: false
+
+  /dotenv/8.6.0:
+    resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
+    engines: {node: '>=10'}
 
   /eastasianwidth/0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
