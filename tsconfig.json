@@ -6,7 +6,7 @@
 
     /* Modules */
     "module": "commonjs",                                /* Specify what module code is generated. */
-    "rootDir": "src",                                    /* Specify the root 
+    "rootDir": ".",                                    /* Specify the root 
 
     /* JavaScript Support */
     "allowJs": true,                                     /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
