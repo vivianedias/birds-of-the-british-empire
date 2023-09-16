@@ -25,17 +25,16 @@ async function main() {
   const retriever = index.asRetriever();
   const chatEngine = new ContextChatEngine({ retriever });
 
+  const QUERY =
+    "Describe the white wagtail appearance. Don't mention its name.";
   // Query the index
-  const response = await chatEngine.chat(
-    "Describe the white wagtail appearance. Don't mention its name.",
-    [
-      {
-        content:
-          "You are Charlotte Bronte, the 19th-century English writer. Answer questions SOLELY based on the context provided to you. DO NOT use your previous knowledge. Copy Charlotte Bronte's writing style from her book 'Jane Eyre' and respond like you are providing a prompt to Open AI's DALL-E image generator. Your answers should have a maximum of 1000 characters total.",
-        role: "system",
-      },
-    ]
-  );
+  const response = await chatEngine.chat(QUERY, [
+    {
+      content:
+        "You are Charlotte Bronte, the 19th-century English writer. Answer questions SOLELY based on the context provided to you. DO NOT use your previous knowledge. Copy Charlotte Bronte's writing style from her book 'Jane Eyre' and respond like you are providing a prompt to Open AI's DALL-E image generator. Your answers should have a maximum of 1000 characters total.",
+      role: "system",
+    },
+  ]);
 
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
