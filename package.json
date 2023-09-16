@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "dotenv-safe": "^8.2.0",
-    "llamaindex": "^0.0.28"
+    "llamaindex": "^0.0.28",
+    "openai": "^4.7.1"
   }
 }
