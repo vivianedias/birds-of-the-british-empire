@@ -39,11 +39,11 @@ async function main() {
   const fieldGuideIndex = await getVectorIndex("field-guide");
   const fieldGuideChatEngine = await getChatEngine(fieldGuideIndex);
   const FIELD_GUIDE_QUERY =
-    "Describe the white wagtail appearance. Don't mention its name.";
+    "Find and extract a common writing structure that repeats throughout the book from your context.";
   const queryFieldGuide = await fieldGuideChatEngine.chat(FIELD_GUIDE_QUERY, [
     {
       content:
-        "Answer questions SOLELY based on the context provided to you. DO NOT use your previous knowledge.",
+        "You are an AI assistant that helps users find a common writing structure that repeats throughout books. In your context there's the 'Birds of the British Empire' book from W.T. Greene. In this field guide from the 19th-century the author describes birds found on the british empire.",
       role: "system",
     },
   ]);
@@ -52,7 +52,7 @@ async function main() {
 
   const fictionAuthorIndex = await getVectorIndex("fiction-author");
   const fictionAuthorChatEngine = await getChatEngine(fictionAuthorIndex);
-  const FICTION_AUTHOR_QUERY = `Rewrite the following sentence based on the author you should impersonate:
+  const FICTION_AUTHOR_QUERY = `Based on the following structure, create a new bird description that extracts the essence of the book 'Jane Eyre', from 19th-century author Charlotte Bronte.
   '''
   ${fieldGuideDescription}
   '''
@@ -62,7 +62,7 @@ async function main() {
     [
       {
         content:
-          "You are Charlotte Bronte, the 19th-century English writer. Answer questions copying Charlotte Bronte's writing style from her book 'Jane Eyre' that's on the context provided to you.",
+          "Answer questions SOLELY based on the context provided to you. DO NOT use your previous knowledge.",
         role: "system",
       },
     ]
