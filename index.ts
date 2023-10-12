@@ -93,4 +93,59 @@ async function main() {
   console.log(imageResponse);
 }
 
-main();
+async function describeJaneEyre() {
+  const llm = new LlamaOpenAI({ model: "gpt-3.5-turbo", temperature: 0.0 });
+
+  const CHARACTER_BIRD_PROMPT = `You are an AI assistant who describes characters from novels as if they were birds.
+
+  To do that, you use the book "Birds from the British Empire" by W T Greene as a reference.
+  
+  Notice that this book uses the following structure to describe a bird:
+  
+  Paragraph 1: Physical description of the bird. Color, patterns, body parts, length. Any difference between genders. Etc.
+  
+  Paragraph 2: Geography. Where it is found. Type of nest/habitat. Diet.
+  
+  Paragraph 3: Breeding, broods, mating. History.
+  
+  Paragraph 4: Personality. Behaviour. Politics. With Examples.
+  
+  Paragraph 5: Colonialism. Captivity. Opinion/bias towards the bird. Relationship to "people" (empire).
+  
+  You should use this structure to describe the birds. You don't need to name the paragraph, just follow this structure.`;
+
+  const characterAsABird = await llm.chat([
+    { role: "system", content: CHARACTER_BIRD_PROMPT },
+    {
+      role: "user",
+      content:
+        "Imagine if the character Bertha Mason from Charlotte Bronte's novel Jane Eyre were a bird in the Birds from the British Empire book. Describe this bird.",
+    },
+  ]);
+
+  console.log(">>> CHARACTER AS A BIRD:", characterAsABird.message.content);
+
+  const imagePrompt = await llm.chat([
+    {
+      content: `You are an assistant that receives a bird description and formats this description as a query to Open AI's DALL-E image generator prompt. Your response needs to have a max of 1000 characters.`,
+      role: "system",
+    },
+    { content: characterAsABird.message.content, role: "user" },
+  ]);
+
+  console.log(">>> IMAGE PROMPT:", imagePrompt);
+
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
+  const imageResponse = await openai.images.generate({
+    prompt: imagePrompt.message.content,
+    n: 3,
+    size: "1024x1024",
+  });
+
+  console.log(imageResponse);
+}
+
+describeJaneEyre();
